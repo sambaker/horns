@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h1>Horn charts</h1>
+  <p class="lead">
+    Scale charts for trombone and trumpet
+  </p>
+
+
+  <form id="form-inline">
+    <fieldset>
+
+      <p class="row">
+        <label class="">Key:</label>
+        <select ng-model="key" ng-options="key for key in keys" name="Key" class="input-xlarge">
+        </select>
+      </p>
+
+      <p class="row">
+        <label class="">Scale:</label>
+        <select ng-model="scale" ng-options="scale for scale in scales" name="Scale" class="input-xlarge">
+        </select>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+<div class="row" ng-if="scaleNotes">
+  <p>
+    Notes in scale are: <span ng-repeat="note in scaleNotes">{{note.name}} </span>
+  </p>
+  <horn-chart horn-def="hornDef" selections="selections"></horn-chart>
+</div>

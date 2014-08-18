@@ -1,0 +1,197 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+$cellHeight: 45px;
+$cellWidth: 14.28%;
+
+.horn-container {
+  position: relative;
+}
+
+.horns-partial {
+  position: absolute;
+  width: 100%;
+  height: $cellHeight;
+  background-color: #eeeeee;
+  left: 0px;
+}
+
+.horns-position {
+  display: inline-block;
+  background-color: #eee;
+  border: 1px solid black;
+  height: 100%;
+  width: $cellWidth;
+  color: #000;
+  text-align: center;
+  line-height: $cellHeight;
+
+  &.alternate {
+    border-color: #ddd;
+    color: #bbb;
+    background-color: #f8f8f8;
+  }
+
+  position: absolute;
+}
+
+.horns-selection {
+  position: absolute;
+  width: $cellWidth;
+  height: $cellHeight;
+  background-color: #cfc;
+
+  &.alternate {
+    background-color: #efe;
+  }
+}
+
+.horns-position, .horns-selection {
+  &.position0 {
+    left: 0px;
+  }
+  &.position1 {
+    left: $cellWidth * 1;
+  }
+  &.position2 {
+    left: $cellWidth * 2;
+  }
+  &.position3 {
+    left: $cellWidth * 3;
+  }
+  &.position4 {
+    left: $cellWidth * 4;
+  }
+  &.position5 {
+    left: $cellWidth * 5;
+  }
+  &.position6 {
+    left: $cellWidth * 6;
+  }
+}
+
+.horns-partial, .horns-selection {
+  &.partial0 {
+    bottom: 0px;
+  }
+  &.partial1 {
+    bottom: $cellHeight * 1;
+  }
+  &.partial2 {
+    bottom: $cellHeight * 2;
+  }
+  &.partial3 {
+    bottom: $cellHeight * 3;
+  }
+  &.partial4 {
+    bottom: $cellHeight * 4;
+  }
+  &.partial5 {
+    bottom: $cellHeight * 5;
+  }
+  &.partial6 {
+    bottom: $cellHeight * 6;
+  }
+  &.partial7 {
+    bottom: $cellHeight * 7;
+  }
+  &.partial8 {
+    bottom: $cellHeight * 8;
+  }
+  &.partial9 {
+    bottom: $cellHeight * 9;
+  }
+  &.partial10 {
+    bottom: $cellHeight * 10;
+  }
+}

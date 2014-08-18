@@ -1,0 +1,11 @@
+<div class="horn-container" ng-style="{height: hornDef.partials.length * 45+'px'}">
+  <div ng-repeat="partial in hornDef.partials" class="horns-partial partial{{$index}}">
+    <div ng-repeat="position in partial.positions" ng-class="{alternate: position.score < 10}" class="horns-position position{{$index}}">
+      {{position | note}}
+    </div>
+  </div>
+
+  <div ng-repeat="selection in selections" class="horns-position horns-selection partial{{selection.location.partial}} position{{selection.location.position}}" ng-class="{alternate: selection.location.score < 10}">
+    {{selection.name}}
+  </div>
+</div>

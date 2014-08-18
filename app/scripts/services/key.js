@@ -36,16 +36,16 @@ angular.module('hornsApp')
 
     var indexToNotes = [
     	['C', 'B#', 'Dbb'],
-    	['C#', 'Db', 'B##'],
+    	['Db', 'C#', 'B##'],
     	['D', 'C##', 'Ebb'],
-    	['D#', 'C###', 'Eb'],
+    	['Eb', 'D#', 'C###'],
     	['E', 'D##', 'Fb'],
     	['F', 'E#', 'Gbb'],
-    	['F#', 'E##', 'Gb'],
+    	['Gb', 'F#', 'E##'],
     	['G', 'F##', 'Abb'],
-    	['G#', 'F###', 'Ab'],
+    	['Ab', 'G#', 'F###'],
     	['A', 'G##', 'Bbb'],
-    	['A#', 'Bb', 'G###'],
+    	['Bb', 'A#', 'G###'],
     	['B', 'Cb', 'A##']
     ];
 
@@ -92,7 +92,7 @@ angular.module('hornsApp')
     	}
     }
 
-    function keyNote(key, note) {
+    function keyNote(key, note, nonsequential) {
     	var intervalData = noteLookup[note];
     	if (_.isUndefined(intervalData)) {
     		throw 'Invalid note!';
@@ -102,11 +102,13 @@ angular.module('hornsApp')
     	var index = (key.rootIndex + intervalData[0]) % 12;
     	var options = indexToNotes[index];
     	var result;
-    	_.each(options, function(option) {
-    		if (option[0] === noteName) {
-    			result = option;
-    		}
-    	});
+    	if (!nonsequential) {
+	    	_.each(options, function(option) {
+	    		if (option[0] === noteName) {
+	    			result = option;
+	    		}
+	    	});
+	    }
     	if (!result) {
     		result = options[0];
     		// throw 'Invalid lookup!'
@@ -117,18 +119,29 @@ angular.module('hornsApp')
     	}
     }
 
-    function keyNotes(key, notes) {
+    function keyNotes(key, scale) {
     	var result = [];
-    	_.each(notes, function(note) {
-    		result.push(keyNote(key, note));
+    	_.each(scale.notes, function(note) {
+    		result.push(keyNote(key, note, scale.nonsequential));
     	})
     	return result;
     }
 
     var scaleDefinitions = {
-    	'major': ['R', '2', '3', '4', '5', '6', '7'],
-    	'minor': ['R', '2', 'm3', '4', '5', 'm6', 'm7'],
-    	'whole-tone': ['R', '2', '3', '#4', 'm6', 'm7']
+    	'major': {
+    		notes: ['R', '2', '3', '4', '5', '6', '7']
+    	},
+    	'minor': {
+    		notes: ['R', '2', 'm3', '4', '5', 'm6', 'm7']
+    	},
+    	'blues': {
+    		notes: ['R', 'm3', '4', 'b5', '5', 'm7'],
+    		nonsequential: true
+    	},
+    	'whole-tone': {
+    		notes: ['R', '2', '3', '#4', 'm6', 'm7'],
+    		nonsequential: true
+    	}
     }
 
     this.scaleTypes = function() {

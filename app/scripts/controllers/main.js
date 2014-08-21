@@ -8,19 +8,32 @@
  * Controller of the hornsApp
  */
 angular.module('hornsApp')
-  .controller('MainCtrl', ['$scope', 'Key', 'Horn', function ($scope, Key, Horn) {
+  .controller('MainCtrl', ['$scope', '$location', '$routeParams', 'Key', 'Horn', function ($scope, $location, $routeParams, Key, Horn) {
 
     $scope.keys = ['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'C#', 'D#', 'F#', 'G#', 'A#'];
     $scope.scales = Key.scaleTypes();
-    $scope.key = $scope.keys[0];
-    $scope.scale = $scope.scales[0];
 
+    if ($scope.keys.indexOf($routeParams.key) >= 0) {
+      $scope.key = $routeParams.key;
+    } else {
+      $scope.key = $scope.keys[0];
+    }
+
+    if ($scope.scales.indexOf($routeParams.scale) >= 0) {
+      $scope.scale = $routeParams.scale;
+    } else {
+      $scope.scale = $scope.scales[0];
+    }
+
+    console.log("routeParams are",$routeParams);
     function notesChanged() {
-      var key = Key.key($scope.key)
-      $scope.scaleNotes = Key.scale(key, $scope.scale);
-      $scope.selections = Horn.createSelection($scope.scaleNotes);
+      console.log("Changed");
+      $location.path("/" + $scope.key + "/" + $scope.scale);
       //console.log('scaleNotes',$scope.scaleNotes);
     }
+    var key = Key.key($scope.key)
+    $scope.scaleNotes = Key.scale(key, $scope.scale);
+    $scope.selections = Horn.createSelection($scope.scaleNotes);
 
     $scope.$watch('key', notesChanged);
     $scope.$watch('scale', notesChanged);

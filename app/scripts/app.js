@@ -19,7 +19,7 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/:key?/:scale?', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })

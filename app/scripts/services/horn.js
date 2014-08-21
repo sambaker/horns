@@ -159,7 +159,8 @@ angular.module('hornsApp')
           _.each(locations, function(location) {
             selection.push({
               location: location,
-              name: note.name
+              name: note.name,
+              interval: note.interval
             });
           });
         }

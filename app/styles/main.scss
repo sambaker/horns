@@ -14,6 +14,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  background-color: #000;
+  color: #fff;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -22,6 +24,13 @@ body {
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.jumbotron {
+  background-color: #181818;
+  color: #fff;
+  padding: 20px;
+  margin: 0px;
 }
 
 /* Custom page header */
@@ -41,7 +50,6 @@ body {
 .footer {
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
 }
 
 .container-narrow > hr {
@@ -99,27 +107,46 @@ $cellWidth: 14.28%;
 }
 
 .horns-partial {
+  color: #000;
   position: absolute;
   width: 100%;
   height: $cellHeight;
-  background-color: #eeeeee;
   left: 0px;
 }
 
+$cellBGColor: #383838;
+$cellColor: #fff;
+$cellBorder: none;//1px solid #eee;
+$alternateScaleOpacity: 0.35;
+$alternateCellBorder: none;//1px dashed #eee;
+
+$cellBGColorSelected: #585;
+$cellBGColorSelectedRoot: #5a5;
+$cellColorSelected: #fff;
+
+$cellBGColorSelectedAlternate: #565 * 0.35;
+$cellBGColorSelectedAlternateRoot: #676 * 0.35;
+$cellColorSelectedAlternate: #fff * 0.35;
+
+@mixin cell-border($style) {
+  border: $style;
+}
+
 .horns-position {
+  // border-radius: 7px;
   display: inline-block;
-  background-color: #eee;
-  border: 1px solid black;
+  background-color: $cellBGColor;
+  @include cell-border($cellBorder);
   height: 100%;
   width: $cellWidth;
-  color: #000;
+  color: $cellColor;
   text-align: center;
   line-height: $cellHeight;
 
   &.alternate {
-    border-color: #ddd;
-    color: #bbb;
-    background-color: #f8f8f8;
+    opacity: $alternateScaleOpacity;
+    border: $alternateCellBorder;
+    color: #ddd;
   }
 
   position: absolute;
@@ -129,10 +156,26 @@ $cellWidth: 14.28%;
   position: absolute;
   width: $cellWidth;
   height: $cellHeight;
-  background-color: #cfc;
-
+  background-color: $cellBGColorSelected;
+  color: $cellColorSelected;
+  font-size: 16px;
+  &.root {
+    background-color: $cellBGColorSelectedRoot;
+  }
   &.alternate {
-    background-color: #efe;
+    opacity: 1;
+    background-color: $cellBGColorSelectedAlternate;
+    color: $cellColorSelectedAlternate;
+    &.root {
+      background-color: $cellBGColorSelectedAlternateRoot;
+    }
+  }
+
+  .shift-position-right {
+    font-size: 12px;
+    position: absolute;
+    left: 65%;
+    top: -10px;
   }
 }
 

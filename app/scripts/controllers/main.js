@@ -10,7 +10,7 @@
 angular.module('hornsApp')
   .controller('MainCtrl', ['$scope', 'Key', 'Horn', function ($scope, Key, Horn) {
 
-    $scope.keys = ['Bb', 'B', 'C', 'C#', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'Ab', 'A', 'A#'];
+    $scope.keys = ['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'C#', 'D#', 'F#', 'G#', 'A#'];
     $scope.scales = Key.scaleTypes();
     $scope.key = $scope.keys[0];
     $scope.scale = $scope.scales[0];

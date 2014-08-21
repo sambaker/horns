@@ -57,23 +57,23 @@ angular.module('hornsApp')
     })
 
     var noteLookup = {
-    	'R': [0, 0],
-    	'm2': [1, 1],
-    	'M2': [2, 1],
-    	'2': [2, 1],
-    	'm3': [3, 2],
-    	'M3': [4, 2],
-    	'3': [4, 2],
-    	'4': [5, 3],
-    	'#4': [6, 3],
-    	'b5': [6, 4],
-    	'5': [7, 4],
-    	'm6': [8, 5],
-    	'M6': [9, 5],
-    	'6': [9, 5],
-    	'm7': [10, 6],
-    	'M7': [11, 6],
-    	'7': [11, 6]
+    	'R': [0, 0, 'I'],
+    	'm2': [1, 1, 'ii'],
+    	'M2': [2, 1, 'II'],
+    	'2': [2, 1, 'II'],
+    	'm3': [3, 2, 'iii'],
+    	'M3': [4, 2, 'III'],
+    	'3': [4, 2, 'III'],
+    	'4': [5, 3, 'IV'],
+    	'#4': [6, 3, '#IV'],
+    	'b5': [6, 4, 'v'],
+    	'5': [7, 4, 'V'],
+    	'm6': [8, 5, 'vi'],
+    	'M6': [9, 5, 'VI'],
+    	'6': [9, 5, 'VI'],
+    	'm7': [10, 6, 'vii'],
+    	'M7': [11, 6, 'VII'],
+    	'7': [11, 6, 'VII']
     };
 
     this.key = function(root) {
@@ -98,7 +98,6 @@ angular.module('hornsApp')
     		throw 'Invalid note!';
     	}
     	var noteName = noteOrder[(key.rootPosition + intervalData[1]) % 7]
-    	//return noteName;
     	var index = (key.rootIndex + intervalData[0]) % 12;
     	var options = indexToNotes[index];
     	var result;
@@ -115,7 +114,8 @@ angular.module('hornsApp')
     	}
     	return {
     		name: result,
-    		index: index
+    		index: index,
+    		interval: intervalData[2]
     	}
     }
 
@@ -135,7 +135,7 @@ angular.module('hornsApp')
     		notes: ['R', '2', 'm3', '4', '5', 'm6', 'm7']
     	},
     	'blues': {
-    		notes: ['R', 'm3', '4', 'b5', '5', 'm7'],
+    		notes: ['R', 'm3', '4', '#4', '5', 'm7'],
     		nonsequential: true
     	},
     	'whole-tone': {

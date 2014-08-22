@@ -8,6 +8,5 @@ Demo available at: http://horncharts.dreamhosters.com/#/
 
 - http://horncharts.dreamhosters.com/#/trombone/Bb/blues
 - http://horncharts.dreamhosters.com/#/trombone/Ab/minor
-
 - http://horncharts.dreamhosters.com/#/trumpet/C/blues
 - http://horncharts.dreamhosters.com/#/trumpet/Bb/minor

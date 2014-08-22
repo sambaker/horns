@@ -9,6 +9,12 @@
     <fieldset>
 
       <p class="row">
+        <label class="">Instrument:</label>
+        <select ng-model="instrument" ng-options="instrument for instrument in instruments" name="Instrument" class="input-xlarge">
+        </select>
+      </p>
+
+      <p class="row">
         <label class="">Key:</label>
         <select ng-model="key" ng-options="key for key in keys" name="Key" class="input-xlarge">
         </select>

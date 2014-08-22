@@ -10,7 +10,18 @@
 angular.module('hornsApp')
   .controller('MainCtrl', ['$scope', '$location', '$routeParams', 'Key', 'Horn', function ($scope, $location, $routeParams, Key, Horn) {
 
-    $scope.keys = ['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'C#', 'D#', 'F#', 'G#', 'A#'];
+    $scope.instruments = Horn.getInstruments();
+    if ($scope.instruments.indexOf($routeParams.instrument) >= 0) {
+      $scope.instrument = $routeParams.instrument;
+    } else {
+      $scope.instrument = 'trombone';
+    }
+
+    if ($scope.instrument === 'trumpet') {
+      $scope.keys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C#', 'D#', 'F#', 'G#', 'A#'];
+    } else {
+      $scope.keys = ['Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'C#', 'D#', 'F#', 'G#', 'A#'];
+    }
     $scope.scales = Key.scaleTypes();
 
     if ($scope.keys.indexOf($routeParams.key) >= 0) {
@@ -26,19 +37,29 @@ angular.module('hornsApp')
     }
 
     console.log("routeParams are",$routeParams);
-    function notesChanged() {
-      console.log("Changed");
-      $location.path("/" + $scope.key + "/" + $scope.scale);
+    function paramsChanged() {
+      $location.path("/" + $scope.instrument + "/" + $scope.key + "/" + $scope.scale);
       //console.log('scaleNotes',$scope.scaleNotes);
     }
     var key = Key.key($scope.key)
     $scope.scaleNotes = Key.scale(key, $scope.scale);
-    $scope.selections = Horn.createSelection($scope.scaleNotes);
+    $scope.selections = Horn.createSelection($scope.instrument, $scope.scaleNotes);
 
-    $scope.$watch('key', notesChanged);
-    $scope.$watch('scale', notesChanged);
+    $scope.$watch('key', paramsChanged);
+    $scope.$watch('scale', paramsChanged);
+  
+    $scope.$watch('instrument', function(newInstrument, oldInstrument) {
+      if (newInstrument && oldInstrument && newInstrument != oldInstrument) {
+        // TODO: Transpose selected key
+        console.log("TODO: Transpose selected key to new instrument")
+      }
+      paramsChanged();
+    });
 
-    $scope.hornDef = Horn.definition;
+    $scope.$watch('instrument', function(instrument) {
+      $scope.hornDef = Horn.instruments[instrument];
+      console.log("HORNDEF", $scope.hornDef);
+    });
 
     // var Eb = Key.key('Eb');
     // var EbMajor = Key.scaleMajor(Eb);

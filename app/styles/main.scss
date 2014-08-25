@@ -177,6 +177,12 @@ $cellColorSelectedAlternate: #fff * 0.35;
     left: 65%;
     top: -10px;
   }
+
+  .centered-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .horns-position, .horns-selection {
@@ -237,4 +243,78 @@ $cellColorSelectedAlternate: #fff * 0.35;
   &.partial10 {
     bottom: $cellHeight * 10;
   }
+}
+
+$valve-margin: 25%;
+$valve-width: (100% - $valve-margin * 2) / 3;
+
+.trumpet-valves {
+  top: 70%;
+  height: 30%;
+  position: relative;
+  left: 0%;
+  //padding: 0% $valve-margin;
+
+  .trumpet-valve {
+    // float: left;
+    position: absolute;
+    height: 100%;
+    width: $valve-width;
+
+    &.valve1 {
+      left: $valve-margin;
+    }
+    &.valve2 {
+      left: $valve-margin + $valve-width;
+    }
+    &.valve3 {
+      left: $valve-margin + $valve-width * 2;
+    }
+
+    .valve-top {
+      position: absolute;
+      left: 20%;
+      width: 60%;
+      height: 3px;
+      &.open {
+        top: 0px;
+      }
+      &.closed {
+        bottom: 1px;
+      }
+      border-radius: 2px;
+      background-color: #fff;
+    }
+
+    .valve-bottom {
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      bottom: 0%;
+      background-color: #fff;
+    }
+
+    .valve-stem {
+      position: absolute;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      top: 0px;
+      height: 100%;
+      background-color: #fff;
+    }
+
+    .alternate & {
+      opacity: 0.3;
+    }
+  }
+}
+
+.full-parent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
 }

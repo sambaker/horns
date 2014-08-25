@@ -49,7 +49,7 @@ angular.module('hornsApp')
     $scope.$watch('scale', paramsChanged);
   
     $scope.$watch('instrument', function(newInstrument, oldInstrument) {
-      if (newInstrument && oldInstrument && newInstrument != oldInstrument) {
+      if (newInstrument && oldInstrument && newInstrument !== oldInstrument) {
         // TODO: Transpose selected key
         console.log("TODO: Transpose selected key to new instrument")
       }

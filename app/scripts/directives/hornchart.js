@@ -12,6 +12,7 @@ angular.module('hornsApp')
       templateUrl: 'views/hornchart.html',
       restrict: 'E',
       scope: {
+      	instrument: '=',
       	hornDef: '=',
       	selections: '='
       },

@@ -6,6 +6,33 @@
   </div>
 
   <div ng-repeat="selection in selections" class="horns-position horns-selection partial{{selection.location.partial}} position{{selection.location.position}}" ng-class="{alternate: selection.location.score < 10, root: selection.interval == 'I'}">
-    {{selection.interval | musicNote}}<div class="shift-position-right"> {{selection.name | musicNote}}</div>
+    <div class="centered-text">{{selection.interval | musicNote}}</div>
+    <div class="shift-position-right"> {{selection.name | musicNote}}</div>
+    <div ng-if="instrument == 'trumpet'" class="trumpet-valves">
+      <div ng-switch="[2, 3, 5, 6].indexOf(selection.location.position)" class="trumpet-valve valve1">
+        <div class="full-parent" ng-switch-when="-1">
+          <ng-include class="full-parent" src="'views/open-valve.html'"></ng-include>
+        </div>
+        <div class="full-parent" ng-switch-default>
+          <ng-include class="full-parent" src="'views/closed-valve.html'"></ng-include>
+        </div>
+      </div>
+      <div ng-switch="[1, 3, 4, 6].indexOf(selection.location.position)" class="trumpet-valve valve2">
+        <div class="full-parent" ng-switch-when="-1">
+          <ng-include class="full-parent" src="'views/open-valve.html'"></ng-include>
+        </div>
+        <div class="full-parent" ng-switch-default>
+          <ng-include class="full-parent" src="'views/closed-valve.html'"></ng-include>
+        </div>
+      </div>
+      <div ng-switch="[4, 5, 6].indexOf(selection.location.position)" class="trumpet-valve valve3">
+        <div class="full-parent" ng-switch-when="-1">
+          <ng-include class="full-parent" src="'views/open-valve.html'"></ng-include>
+        </div>
+        <div class="full-parent" ng-switch-default>
+          <ng-include class="full-parent" src="'views/closed-valve.html'"></ng-include>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
